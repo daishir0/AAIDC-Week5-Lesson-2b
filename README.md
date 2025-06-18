@@ -113,9 +113,61 @@ User Input: q
 AAIDC-Week5-Lesson-2b/
 ├── README.md          # Project description
 ├── requirements.txt   # Required libraries
-├── joke_bot.py        # Main Python script
+├── joke_bot.py        # Basic joke bot implementation
+├── joke_bot1.py       # Version with language switching
+├── joke_bot2.py       # Version with history reset
+├── joke_bot3.py       # Version using OpenAI for jokes
+├── config.yaml        # Configuration for OpenAI API
 └── joke_bot_diagram.md # Workflow diagram
 ```
+
+## Extended Versions
+
+This project includes three extended versions of the joke bot, each adding new functionality:
+
+### 1. Language Switching (joke_bot1.py)
+
+This version adds the ability to switch between different languages:
+
+```bash
+python joke_bot1.py
+```
+
+Features:
+- Support for multiple languages (English, German, Spanish, Italian, French)
+- New menu option: `[l]` to change language
+- Updated state management to track language preference
+
+### 2. History Reset (joke_bot2.py)
+
+This version adds the ability to reset joke history:
+
+```bash
+python joke_bot2.py
+```
+
+Features:
+- New menu option: `[r]` to reset joke history
+- Clears all previously told jokes from memory
+- Allows starting fresh without restarting the bot
+
+### 3. LLM-Powered Jokes (joke_bot3.py)
+
+This version replaces pyjokes with OpenAI API for generating jokes:
+
+```bash
+python joke_bot3.py
+```
+
+Features:
+- Uses OpenAI API to generate jokes on demand
+- Different joke categories: programmer, chuck, dad
+- Loads API key from config.yaml
+- More varied and potentially funnier jokes
+
+Before running joke_bot3.py, make sure to:
+1. Update your OpenAI API key in config.yaml
+2. Install additional dependencies with `pip install -r requirements.txt`
 
 ## Learning Points
 
@@ -245,9 +297,61 @@ User Input: q
 AAIDC-Week5-Lesson-2b/
 ├── README.md          # プロジェクトの説明
 ├── requirements.txt   # 必要なライブラリ
-├── joke_bot.py        # メインのPythonスクリプト
+├── joke_bot.py        # 基本的なジョークボットの実装
+├── joke_bot1.py       # 言語切り替え機能を追加したバージョン
+├── joke_bot2.py       # 履歴リセット機能を追加したバージョン
+├── joke_bot3.py       # OpenAIを使用したジョーク生成バージョン
+├── config.yaml        # OpenAI APIの設定ファイル
 └── joke_bot_diagram.md # ワークフローダイアグラム
 ```
+
+## 拡張バージョン
+
+このプロジェクトには、新しい機能を追加した3つの拡張バージョンのジョークボットが含まれています：
+
+### 1. 言語切り替え機能 (joke_bot1.py)
+
+このバージョンでは、異なる言語を切り替える機能が追加されています：
+
+```bash
+python joke_bot1.py
+```
+
+特徴：
+- 複数の言語をサポート（英語、ドイツ語、スペイン語、イタリア語、フランス語）
+- 新しいメニューオプション：`[l]`で言語を変更
+- 言語設定を追跡するための状態管理の更新
+
+### 2. 履歴リセット機能 (joke_bot2.py)
+
+このバージョンでは、ジョーク履歴をリセットする機能が追加されています：
+
+```bash
+python joke_bot2.py
+```
+
+特徴：
+- 新しいメニューオプション：`[r]`でジョーク履歴をリセット
+- 以前に表示したすべてのジョークをメモリからクリア
+- ボットを再起動せずに新しく始めることが可能
+
+### 3. LLMを使用したジョーク生成 (joke_bot3.py)
+
+このバージョンでは、pyjokesの代わりにOpenAI APIを使用してジョークを生成します：
+
+```bash
+python joke_bot3.py
+```
+
+特徴：
+- OpenAI APIを使用してジョークをオンデマンドで生成
+- 異なるジョークカテゴリ：programmer、chuck、dad
+- config.yamlからAPIキーを読み込み
+- より多様で潜在的に面白いジョーク
+
+joke_bot3.pyを実行する前に、以下の準備が必要です：
+1. config.yamlにOpenAI APIキーを設定
+2. `pip install -r requirements.txt`で追加の依存関係をインストール
 
 ## 学習ポイント
 

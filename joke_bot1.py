@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
-LangGraph Joke Bot
+LangGraph Joke Bot (Version 1)
 
 A simple joke-telling bot built with LangGraph.
-This example demonstrates how to build a stateful, graph-based workflow
-without using LLMs.
+This version adds language switching functionality.
 """
 
 from typing import List, Literal, Annotated
@@ -28,7 +27,7 @@ def add(existing_list: List[Joke], new_items: List[Joke]) -> List[Joke]:
 class JokeState(BaseModel):
     """The state of the joke bot."""
     jokes: Annotated[List[Joke], add] = []
-    jokes_choice: Literal["n", "c", "q"] = "n"  # next joke, change category, or quit
+    jokes_choice: Literal["n", "c", "l", "q"] = "n"  # next joke, change category, change language, or quit
     category: str = "neutral"
     language: str = "en"
     quit: bool = False
@@ -41,17 +40,18 @@ def get_joke(language: str, category: str) -> str:
 # 2. Write Node Functions
 def show_menu(state: JokeState) -> dict:
     """Display menu and get user input."""
-    print(f"🎭 Menu | Category: {state.category.upper()} | Jokes: {len(state.jokes)}")
+    print(f"🎭 Menu | Category: {state.category.upper()} | Language: {state.language.upper()} | Jokes: {len(state.jokes)}")
     print("--------------------------------------------------")
     print("Pick an option:")
-    print("[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit")
+    print("[n] 🎭 Next Joke  [c] 📂 Change Category  [l] 🌐 Change Language  [q] 🚪 Quit")
     user_input = input("User Input: ").strip().lower()
     
     # Map numeric inputs to choices
     input_map = {
         "1": "n",
         "2": "c",
-        "3": "q"
+        "3": "l",
+        "4": "q"
     }
     
     # Convert numeric input to letter choice if applicable
@@ -59,8 +59,8 @@ def show_menu(state: JokeState) -> dict:
         user_input = input_map[user_input]
     
     # Validate input
-    if user_input not in ["n", "c", "q"]:
-        print("\n❌ Invalid option. Please use n, c, or q.\n")
+    if user_input not in ["n", "c", "l", "q"]:
+        print("\n❌ Invalid option. Please use n, c, l, or q.\n")
         user_input = "n"  # Default to next joke for invalid inputs
         
     return {"jokes_choice": user_input}
@@ -87,6 +87,30 @@ def update_category(state: JokeState) -> dict:
         print("\n❌ Invalid selection. Keeping current category.\n")
         return {}
 
+def update_language(state: JokeState) -> dict:
+    """Update the joke language."""
+    languages = [
+        ("en", "English"),
+        ("de", "German"),
+        ("es", "Spanish"),
+        ("it", "Italian"),
+        ("fr", "French")
+    ]
+    
+    print("\n🌐 Available languages:")
+    for i, (code, name) in enumerate(languages):
+        print(f"[{i}] {name} ({code})")
+    
+    selection = int(input(f"Select language [0-{len(languages)-1}]: ").strip())
+    
+    if 0 <= selection < len(languages):
+        selected_language = languages[selection][0]
+        print(f"\n✅ Language updated to: {languages[selection][1].upper()}\n")
+        return {"language": selected_language}
+    else:
+        print("\n❌ Invalid selection. Keeping current language.\n")
+        return {}
+
 def exit_bot(state: JokeState) -> dict:
     """Exit the joke bot."""
     print("\n🚪==========================================================🚪")
@@ -101,6 +125,8 @@ def route_choice(state: JokeState) -> str:
         return "fetch_joke"
     elif state.jokes_choice == "c":
         return "update_category"
+    elif state.jokes_choice == "l":
+        return "update_language"
     elif state.jokes_choice == "q":
         return "exit_bot"
     return "exit_bot"  # Default to exit if input is invalid
@@ -114,6 +140,7 @@ def build_joke_graph():
     workflow.add_node("show_menu", show_menu)
     workflow.add_node("fetch_joke", fetch_joke)
     workflow.add_node("update_category", update_category)
+    workflow.add_node("update_language", update_language)
     workflow.add_node("exit_bot", exit_bot)
 
     # Set entry point
@@ -126,6 +153,7 @@ def build_joke_graph():
         {
             "fetch_joke": "fetch_joke",
             "update_category": "update_category",
+            "update_language": "update_language",
             "exit_bot": "exit_bot",
         }
     )
@@ -133,6 +161,7 @@ def build_joke_graph():
     # Add regular edges
     workflow.add_edge("fetch_joke", "show_menu")
     workflow.add_edge("update_category", "show_menu")
+    workflow.add_edge("update_language", "show_menu")
     workflow.add_edge("exit_bot", END)
 
     return workflow.compile()
@@ -141,8 +170,8 @@ def build_joke_graph():
 def main():
     """Main function to run the joke bot."""
     print("\n🎉==========================================================🎉")
-    print("    WELCOME TO THE LANGGRAPH JOKE BOT!")
-    print("    This example demonstrates agentic state flow without LLMs")
+    print("    WELCOME TO THE LANGGRAPH JOKE BOT (VERSION 1)!")
+    print("    This version adds language switching functionality")
     print("============================================================\n")
 
     print("\n🚀==========================================================🚀")
@@ -159,6 +188,7 @@ def main():
     print("============================================================")
     print(f"    📈 You enjoyed {len(final_state['jokes'])} jokes during this session!")
     print(f"    📂 Final category: {final_state['category'].upper()}")
+    print(f"    🌐 Final language: {final_state['language'].upper()}")
     print("    🙏 Thanks for using the LangGraph Joke Bot!")
     print("============================================================")
 

@@ -1,0 +1,7 @@
+# OpenAI API設定
+openai_api_key: "sk-your-api-key-here"  # ここに実際のAPIキーを入力してください
+
+# モデル設定
+model: "gpt-4o-mini"  # 使用するモデル
+max_tokens: 100       # 最大トークン数
+temperature: 0.7      # 温度（創造性の度合い）
