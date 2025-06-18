@@ -44,6 +44,69 @@ After launching, follow the on-screen instructions:
 - `c`: Change the joke category
 - `q`: Exit the bot
 
+### Example Execution
+
+Here's an example of what running the joke bot looks like:
+
+```
+🎉==========================================================🎉
+    WELCOME TO THE LANGGRAPH JOKE BOT!
+    This example demonstrates agentic state flow without LLMs
+============================================================
+
+
+🚀==========================================================🚀
+    STARTING JOKE BOT SESSION...
+============================================================
+🎭 Menu | Category: NEUTRAL | Jokes: 0
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: n
+
+😂 Why do programmers always mix up Halloween and Christmas? Because Oct 31 equals Dec 25.
+
+🎭 Menu | Category: NEUTRAL | Jokes: 1
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: c
+
+📂 Available categories:
+[0] neutral
+[1] chuck
+[2] all
+Select category [0-2]: 1
+
+✅ Category updated to: CHUCK
+
+🎭 Menu | Category: CHUCK | Jokes: 1
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: n
+
+😂 Chuck Norris doesn't read books. He stares them down until he gets the information he wants.
+
+🎭 Menu | Category: CHUCK | Jokes: 2
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: q
+
+🚪==========================================================🚪
+    GOODBYE!
+============================================================
+
+🎊==========================================================🎊
+    SESSION COMPLETE!
+============================================================
+    📈 You enjoyed 2 jokes during this session!
+    📂 Final category: CHUCK
+    🙏 Thanks for using the LangGraph Joke Bot!
+============================================================
+```
+
 ## Project Structure
 
 ```
@@ -112,6 +175,69 @@ python joke_bot.py
 - `n`: 次のジョークを表示
 - `c`: ジョークのカテゴリを変更
 - `q`: ボットを終了
+
+### 実行例
+
+以下は、ジョークボットを実行した例です：
+
+```
+🎉==========================================================🎉
+    WELCOME TO THE LANGGRAPH JOKE BOT!
+    This example demonstrates agentic state flow without LLMs
+============================================================
+
+
+🚀==========================================================🚀
+    STARTING JOKE BOT SESSION...
+============================================================
+🎭 Menu | Category: NEUTRAL | Jokes: 0
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: n
+
+😂 プログラマーがハロウィンとクリスマスを混同するのはなぜですか？Oct 31 は Dec 25 に等しいからです。
+
+🎭 Menu | Category: NEUTRAL | Jokes: 1
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: c
+
+📂 Available categories:
+[0] neutral
+[1] chuck
+[2] all
+Select category [0-2]: 1
+
+✅ Category updated to: CHUCK
+
+🎭 Menu | Category: CHUCK | Jokes: 1
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: n
+
+😂 チャック・ノリスは本を読みません。欲しい情報を得るまで本をにらみつけます。
+
+🎭 Menu | Category: CHUCK | Jokes: 2
+--------------------------------------------------
+Pick an option:
+[n] 🎭 Next Joke  [c] 📂 Change Category  [q] 🚪 Quit
+User Input: q
+
+🚪==========================================================🚪
+    GOODBYE!
+============================================================
+
+🎊==========================================================🎊
+    SESSION COMPLETE!
+============================================================
+    📈 You enjoyed 2 jokes during this session!
+    📂 Final category: CHUCK
+    🙏 Thanks for using the LangGraph Joke Bot!
+============================================================
+```
 
 ## プロジェクト構造
 
